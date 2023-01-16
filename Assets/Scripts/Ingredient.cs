@@ -2,33 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(CanvasGroup))]
-public class Ingredient : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public enum IngredientType
 {
-    protected CanvasGroup canvasGroup;
+    Bread,
+    Cheese,
+    Lettuce,
+    Tomato,
+    Meat,
+    Onion,
+    Egg
+}
 
-    protected void Awake()
-    {
-        canvasGroup = GetComponent<CanvasGroup>();
-    }
+[RequireComponent(typeof(Rigidbody2D))]
+public class Ingredient : MonoBehaviour
+{
+    [Tooltip("True if the object has been selected before and is in its flat orientation. False otherwise.")]
+    [SerializeField] private bool isFlat;
+    [SerializeField] private GameObject SelectPrefab;
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void SelectIngredient()
     {
-        canvasGroup.alpha = .6f;
-        canvasGroup.blocksRaycasts = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        Debug.Log("Dragging ingredient");
-        transform.position = eventData.position;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
+        if (!isFlat)
+        {
+            GameObject ingredient = Instantiate(SelectPrefab, transform.position, transform.rotation);
+            CursorController.Instance.selectedRigidbody = ingredient.GetComponent<Rigidbody2D>();
+            Destroy(gameObject);
+        }
+        else
+        {
+            CursorController.Instance.selectedRigidbody = GetComponent<Rigidbody2D>();
+        }
     }
 }
