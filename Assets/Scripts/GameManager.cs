@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameDuration = 10f;
     [Tooltip("The number of ingredients the sandwich recipe will have " +
         "(does not include top and bottom buns).")]
-    //[SerializeField] private int sandwichSize = 3;
 
     [SerializeField] private KeyCode mainMenuKey = KeyCode.Escape;
 
@@ -60,7 +59,9 @@ public class GameManager : MonoBehaviour
     
     private void GameOver()
     {
+        gameDuration = 0f;
         CursorController.Instance.isInPlay = false;
+        CursorController.Instance.selectedRigidbody = null;
 
         // get the list of ingredients on the plate
         RaycastHit2D[] hits = Physics2D.RaycastAll(foodPlate.position, Vector2.up, 50f);
@@ -68,7 +69,12 @@ public class GameManager : MonoBehaviour
         List<IngredientType> plateIngredients = new List<IngredientType>();
         foreach (RaycastHit2D hit in hits)
         {
-            plateIngredients.Add(hit.collider.GetComponent<Ingredient>().ingredientType);
+            if (!hit.collider.CompareTag("Food"))
+                continue;
+
+            Ingredient ingredient = hit.collider.GetComponent<Ingredient>();
+            if (ingredient.isFlat)
+                plateIngredients.Add(ingredient.ingredientType);
         }
 
         // calculate the score based on the sandwich recipe
@@ -116,21 +122,21 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        // countdown timer
-        gameDuration -= Time.deltaTime;
-        if (gameDuration <= 0f)
-        {
-            gameDuration = 0f;
-            CursorController.Instance.isInPlay = false;
-            CursorController.Instance.selectedRigidbody = null;
-            GameOver();
-        }
-        timerText.text = gameDuration.ToString("F2");
-
         // main menu
         if (Input.GetKeyDown(mainMenuKey))
         {
             ReturnToMenu();
         }
+
+        if (!CursorController.Instance.isInPlay)
+            return;
+
+        // countdown timer
+        gameDuration -= Time.deltaTime;
+        if (gameDuration <= 0f)
+        {
+            GameOver();
+        }
+        timerText.text = gameDuration.ToString("F2");
     }
 }

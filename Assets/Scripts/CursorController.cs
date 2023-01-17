@@ -8,8 +8,8 @@ public class CursorController : MonoBehaviour
     [HideInInspector] public static CursorController Instance { get; private set; }
 
     [SerializeField] private float maxForce = 10f;
-    public Rigidbody2D selectedRigidbody;
-    public bool isInPlay;
+    [HideInInspector] public Rigidbody2D selectedRigidbody;
+    [HideInInspector] public bool isInPlay;
 
     private Vector3 cursorPosition;
     private Vector2 cursorForce;

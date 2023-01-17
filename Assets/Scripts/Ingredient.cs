@@ -22,7 +22,7 @@ public class Ingredient : MonoBehaviour
     [Space(10)]
 
     [Tooltip("True if the object has been selected before and is in its flat orientation. False otherwise.")]
-    [SerializeField] private bool isFlat;
+    public bool isFlat;
     [SerializeField] private GameObject SelectPrefab;
 
     public void SelectIngredient()
