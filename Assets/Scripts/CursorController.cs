@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class CursorController : MonoBehaviour
@@ -32,8 +33,10 @@ public class CursorController : MonoBehaviour
 
     private void Update()
     {
+        if (!isInPlay)
+            return;
+        
         cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
 
         // select and "pick up" an object with the cursor
         if (Input.GetMouseButtonDown(0))

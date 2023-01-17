@@ -17,6 +17,10 @@ public enum IngredientType
 [RequireComponent(typeof(Rigidbody2D))]
 public class Ingredient : MonoBehaviour
 {
+    public IngredientType ingredientType;
+
+    [Space(10)]
+
     [Tooltip("True if the object has been selected before and is in its flat orientation. False otherwise.")]
     [SerializeField] private bool isFlat;
     [SerializeField] private GameObject SelectPrefab;

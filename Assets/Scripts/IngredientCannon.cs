@@ -20,7 +20,7 @@ public class IngredientCannon : MonoBehaviour
 
         // apply force to the ingredient
         Rigidbody2D ingredientRigidbody = ingredient.GetComponent<Rigidbody2D>();
-        float launchAngle = transform.eulerAngles.z * Mathf.Deg2Rad;
+        float launchAngle = (transform.eulerAngles.z + 90f) * Mathf.Deg2Rad;
         ingredientRigidbody.AddForce(new Vector2(Mathf.Cos(launchAngle), Mathf.Sin(launchAngle)) * launchForce, 
             ForceMode2D.Impulse);
 

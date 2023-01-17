@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2553133166785272285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2553133166785272287}
+  - component: {fileID: 2553133166785272284}
+  m_Layer: 0
+  m_Name: Ingredient Cannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2553133166785272287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553133166785272285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2553133166785272284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553133166785272285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa00359deb0485449b9dfdbfd23a6e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  launchForce: 10
+  maxLaunchInterval: 3
+  ingredientPrefabs:
+  - {fileID: 6029609893441527150, guid: 8afb6b4875a00f6479a440cdb5e35004, type: 3}
+  - {fileID: 7720681130061835213, guid: 1fbd2dda7888bca49aa64829a3d0961d, type: 3}
+  - {fileID: 9137943824098752700, guid: 83ceb9bfd5e177a45be912be1518f0ca, type: 3}
+  - {fileID: 673392438528549853, guid: f8f0608be1095c04f977aaafe0073abf, type: 3}
+  - {fileID: 8648473877294250565, guid: efc2eb3605351a542aa9280cfc2b00e6, type: 3}
+  - {fileID: 512982960352994034, guid: a00715dd120e3284bb59635ed9fef922, type: 3}
+  - {fileID: 96886219667826005, guid: 6d5a44cd24b3507469f9715ba0f7448a, type: 3}
